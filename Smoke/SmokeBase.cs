@@ -47,7 +47,7 @@ namespace SelfDiagnosis
             ValidateOther();
             Testresult();
             if (failed)
-                throw new SmokeTestException("A one or more smoketest(s) failed to compleet successfull");
+                throw new SmokeTestException("A one or more smoketest(s) failed to complete successfull");
         }
 
         protected void AddSucces(string name)
