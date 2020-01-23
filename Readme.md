@@ -223,18 +223,3 @@ if (-not @($a | ?{"$(Build.SourceBranch)" -like $_} ).Length -gt 0)
    exit 1
 }
 ```
-Done? Time left? We could do a demo for the private agent with azure container instance. Just ask me and we will see.
-
-1. Create tokens
-	- create token with right scope (Just use full)
-
-1. Change build for web application to default pool (instead of hosted)
-	- Run the docker container with private agent, attached to your public azure devops
-        - install the azure cli https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
-        - create new resource group `az group create --name kiss --location westeurope`
-        - create azure container instance
-
-        `az container create --resource-group kiss --name aci-kiss --image microsoft/vsts-agent:ubuntu-16.04-standard --environment-variables VSTS_ACCOUNT=<accountname> VSTS_TOKEN=<PATTOKEN> VSTS_AGENT="$(hostname)-privateagent" VSTS_POOL=default VSTS_WORK='var/vsts/$VSTS_AGENT` 
-        
-        -wait till it is started +/- 15 min for a 10GB container
-	- queue the new javascript yaml build
